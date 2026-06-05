@@ -1,0 +1,91 @@
+#pragma kernel InitializeOffsets
+#pragma kernel ApplyOffsets
+
+RWTexture2D<float> _SnowOffsetTex;
+Texture2D<float> _TerrainHeightTex;
+SamplerState sampler_TerrainHeightTex;
+float2 _SnowResolution;
+float _SnowFalloff;
+int _UseTerrainHeightMap;
+
+Texture2D<float4> _FootprintMaskTex;
+SamplerState sampler_FootprintMaskTex;
+float _MaskRotation;
+int _UseFootprintMask;   
+float _EdgeSmoothness;
+
+struct SnowActorData
+{
+    float3 positionUV;
+    float radiusUV;
+};
+
+StructuredBuffer<SnowActorData> _SnowActors;
+int _SnowActorCount;
+
+float2 rotateUV(float2 uv, float angleRad)
+{
+    float s = sin(angleRad);
+    float c = cos(angleRad);
+    return float2(uv.x * c - uv.y * s, uv.x * s + uv.y * c);
+}
+
+[numthreads(8,8,1)]
+void InitializeOffsets(uint3 id : SV_DispatchThreadID)
+{
+    float2 uv = (float2)id.xy / _SnowResolution;
+    float height;
+    if (_UseTerrainHeightMap > 0)
+        height = _TerrainHeightTex.SampleLevel(sampler_TerrainHeightTex, uv, 0).r;
+    else
+        height = 1.0f;
+    _SnowOffsetTex[id.xy] = height;
+}
+
+float inverseLerp(float a, float b, float t)
+{
+    return (t - a) / (b - a);
+}
+
+[numthreads(8,8,1)]
+void ApplyOffsets(uint3 id : SV_DispatchThreadID)
+{
+    float2 uv = (float2)id.xy / _SnowResolution;
+    float currentHeight = _SnowOffsetTex[id.xy];
+    float minHeight = currentHeight;
+
+    for (int i = 0; i < _SnowActorCount; i++)
+    {
+        SnowActorData actor = _SnowActors[i];
+        float2 actorUV = actor.positionUV.xz;
+        float2 deltaUV = uv - actorUV;
+        float distUV = length(deltaUV);
+        float radius = actor.radiusUV;
+
+        if (distUV < radius + _SnowFalloff)
+        {
+            float influence;
+            float t = saturate((distUV - radius) / _SnowFalloff);
+            
+            if (_UseFootprintMask > 0)
+            {
+                float2 maskUV = deltaUV / radius + 0.5f;
+                if (_MaskRotation != 0.0f)
+                    maskUV = rotateUV(maskUV - 0.5f, _MaskRotation) + 0.5f;
+                float maskValue = _FootprintMaskTex.SampleLevel(sampler_FootprintMaskTex, maskUV, 0).r;
+
+                float edgeFalloff = 1.0 - smoothstep(0.0, _SnowFalloff, distUV - radius);
+                influence = maskValue * pow(edgeFalloff, _EdgeSmoothness);
+            }
+            else
+            {
+                influence = 1.0 - pow(t, _EdgeSmoothness);
+            }
+
+            float actorHeight = actor.positionUV.y;
+            float newHeight = lerp(actorHeight, currentHeight, influence);
+            minHeight = min(minHeight, newHeight);
+        }
+    }
+    _SnowOffsetTex[id.xy] = minHeight;
+}

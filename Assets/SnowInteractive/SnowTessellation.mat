@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: SnowTessellation
+  m_Shader: {fileID: 4800000, guid: f9bcb0b44ad4661489e67e8c2d02f6e9, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SnowOffsetTex:
+        m_Texture: {fileID: 2800000, guid: 85cb9e0923bbe2d44aad2cb3e0d1fcd1, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _ColorSmoothness: 2.24
+    - _MaxSnowHeight: 0.5
+    - _SnowHeightEnd: 1.94
+    - _SnowHeightStart: -0.02
+    - _TessAmount: 13.9
+    m_Colors:
+    - _BaseColor: {r: 0.7377358, g: 0.92482394, b: 1, a: 1}
+    - _DarkColor: {r: 0.4025561, g: 0.4972339, b: 0.7433963, a: 1}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1

@@ -1,0 +1,85 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-1159323437354206479
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Editor::UnityEditor.Rendering.Universal.AssetVersion
+  version: 10
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: MTV4
+  m_Shader: {fileID: 4800000, guid: f9b0501f3b2861941a711ce14ccd5e94, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses:
+  - MOTIONVECTORS
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 8400000, guid: 46ed9eb03f0a4dd4da994e023d4edc9b, type: 2}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _BlackBalanceStrength: 0
+    - _BlackClipMask: 0
+    - _BlackLevel: 0
+    - _BlackWideRange: 0
+    - _Brightness: 0.15
+    - _CRTWarp: -0.03
+    - _ChromaNR: 0
+    - _Contrast: 1.409
+    - _FaderBlend: 0
+    - _FaderColorMode: 0
+    - _Gamma: 1.09
+    - _HighlightBlend: 1
+    - _HueShift: 0.325
+    - _NoiseAmount: 0
+    - _Reverse: 0
+    - _Saturation: 1
+    - _ScanlineScale: 300
+    - _ScanlineStrength: 0.111
+    - _ShadowBlend: 1
+    - _TintThreshold: 0.5
+    - _VideoArtBlend: 0
+    - _VideoArtOn: 0
+    - _VideoArtReverse: 0
+    - _Vignette: 0.039
+    - _WhiteBalanceStrength: 0
+    - _WhiteClipMask: 1
+    - _WhiteLevel: 0.971
+    - _WhiteWideRange: 0
+    - _WipeDirection: 0
+    - _WipePattern: 1
+    - _WipePosition: 1
+    m_Colors:
+    - _BlackBalanceColor: {r: 0, g: 0, b: 0, a: 1}
+    - _ColorDrift: {r: 0, g: 0, b: 0, a: 0}
+    - _HighlightColor: {r: 1, g: 0.8, b: 0, a: 1}
+    - _ShadowColor: {r: 0, g: 0, b: 1, a: 1}
+    - _VideoArtColor: {r: 0, g: 0.14742732, b: 1, a: 1}
+    - _WhiteBalanceColor: {r: 1, g: 1, b: 1, a: 1}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
